@@ -1,0 +1,11 @@
+title CANC(REFD)
+
+Customer->Merchant:Customer input transaction information
+Merchant->TIS-GW:tis-cashier-app send CANC(REFD) to TIS-GW
+note over TIS-GW:Check the status of original transaction and amount
+TIS-GW->auPAY:/cancelPay \n TIS-GW send cancel request to auPAY
+note over auPAY:Return processing
+auPAY->TIS-GW:auPAY return the result to TIS-GW
+TIS-GW->Merchant:Return completion response, TIS-GW return success to tis-cashier-app
+Merchant->Customer:Success, Finished goods back to confirm notification
+Customer->Merchant:Success, customer return goods to Merchant
